@@ -6,39 +6,39 @@ export default function App({ Component, pageProps }) {
   const [password, setPassword] = useState('')
 
   useEffect(() => {
-    // Basic check for existing session
-    if (localStorage.getItem('terminal_auth') === 'true') {
+    if (localStorage.getItem('auth_token') === 'true') {
       setIsAuthenticated(true)
     }
   }, [])
 
   const handleLogin = (e) => {
     e.preventDefault()
-    // Simple frontend gate (Note: secure environments should use server-side auth, 
-    // but this prevents casual snooping on the Vercel URL)
     if (password === process.env.NEXT_PUBLIC_SITE_PASSWORD || password === 'admin') {
-      localStorage.setItem('terminal_auth', 'true')
+      localStorage.setItem('auth_token', 'true')
       setIsAuthenticated(true)
     } else {
-      alert('ACCESS DENIED')
+      alert('Invalid credentials')
     }
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-black flex flex-col items-center justify-center font-mono text-amber-500">
-        <div className="border border-amber-500 p-8 text-center bg-neutral-950 shadow-[0_0_15px_rgba(245,158,11,0.5)]">
-          <h1 className="text-2xl font-bold mb-4 tracking-widest text-glow-orange">TERMINAL LOGIN</h1>
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="bg-gray-900 border border-gray-800 p-10 rounded-2xl shadow-2xl w-full max-w-md">
+          <h1 className="text-3xl font-bold mb-2 text-center text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">
+            Prop Engine
+          </h1>
+          <p className="text-gray-500 text-center mb-8 text-sm">Secure Authentication Required</p>
           <form onSubmit={handleLogin} className="flex flex-col gap-4">
             <input 
               type="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="ENTER SECURE KEY" 
-              className="bg-black border border-amber-900 p-2 text-center text-white focus:outline-none focus:border-amber-500"
+              placeholder="Enter Access Key" 
+              className="bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             />
-            <button type="submit" className="bg-amber-900 hover:bg-amber-700 text-black font-bold p-2 transition-colors">
-              INITIALIZE
+            <button type="submit" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg p-3 transition-colors shadow-lg shadow-blue-500/30">
+              Access Dashboard
             </button>
           </form>
         </div>

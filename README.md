@@ -2,7 +2,7 @@
 
 A research-grade multi-model forecasting system trained on the Walmart M5 competition dataset. This project covers classical econometrics, machine learning, and deep learning—evaluated on strict walk-forward out-of-sample splits with probabilistic scoring (CRPS, MAPIE). It features a robust DuckDB-backed feature engineering pipeline and a Next.js visualization dashboard.
 
-## 🚀 Project Overview
+## Project Overview
 
 The core discipline of this project is strict walk-forward evaluation. Models are never evaluated on random train-test splits. Success is measured via probabilistic metrics (CRPS) rather than simple point predictions (RMSE), producing true probability distributions over future demand.
 
@@ -43,7 +43,7 @@ A Next.js application designed to consume offline `.json` and `.parquet` predict
 
 ---
 
-## 🛠 Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 - Python 3.10+
@@ -85,6 +85,6 @@ npm run dev
 
 ---
 
-## 📊 Key Findings
+## Key Findings
 
 One of the cornerstone research findings from this project stems from the Diebold-Mariano tests. On highly aggregated retail series over short horizons (e.g., 7 days), highly complex deep learning models (TFT) often **do not statistically outperform** simple baseline models (Seasonal Naïve). True model value reveals itself at longer horizons (28-day) and on granular SKU-level probabilistic coverage.
